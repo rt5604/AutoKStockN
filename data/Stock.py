@@ -11,6 +11,7 @@ class Stock:
 		self.new_code = []
 		self.old_code = []
 		self.min_chart = {}
+		self.jongmok_name = []
 	
 	# 현재가 | 5분 이동평균선 | 10분 이동평균선 | 20분 이동평균선 | 30분 이동평균선 | 매수 시도 | 매도 시도 |
 	def get_pd_new_iterrow(self, now_price, ave_price5=np.nan, ave_price10=np.nan, ave_price20=np.nan, ave_price30=np.nan, flag_buy=False, flag_sell=False):
@@ -19,3 +20,11 @@ class Stock:
 	def get_pd(self):
 		result = pd.DataFrame(index=['시간'], columns=['현재가', '5이평', '10이평', '20이평', '30이평', '매수', '매도'])
 		return result
+	
+	def get_name(self, sCode):
+		# print("jongmok = {}".format(self.jongmok))
+		for index, code in enumerate(self.jongmok):
+			if code == sCode:
+				return self.jongmok_name[index]
+			
+		return ""
